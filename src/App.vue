@@ -16,13 +16,11 @@
         </v-layout>
         <v-container>
             <v-layout justify-center>
-                <v-btn color="success" @click.stop="drawer = !drawer">{{ drawer }}</v-btn> 
+                <v-btn color="info" @click.stop="drawer = !drawer">{{ drawer }}</v-btn> 
             </v-layout> 
-            
-        </v-container>
-        <div id="app">
             <router-view></router-view>
-        </div>
+        </v-container>
+
     </v-app>
     
 </template>
