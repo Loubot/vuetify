@@ -3,7 +3,7 @@
   		<v-text-field
   			label="email"
   			v-model="email"
-  			:rules="nameRules"
+  			:rules="emailRules"
   			:counter="10"
   			required>
   		</v-text-field>
@@ -35,15 +35,19 @@
     			valid: true,
     			email: '',
     			password: '',
-    			nameRules: [
-			        v => !!v || 'Name is required',
-			        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-    			]
+    			emailRules: [
+    			    v => !!v || 'E-mail is required',
+    			    v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+    			],
     		}
     	},
     	methods: {
     		submit () {
-    			return false
+    			if (this.$refs.form.validate()) {
+    				console.log( 'yep' )
+    			} else {
+    				console.log( 'nope' )
+    			}
     		}
     	}
   	}
