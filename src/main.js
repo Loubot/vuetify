@@ -3,11 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 import {
   Vuetify,
   VApp,
   VNavigationDrawer,
   VFooter,
+  VForm,
+  VTextField,
   VList,
   VBtn,
   VIcon,
@@ -17,11 +21,15 @@ import {
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
+
+
 Vue.use(Vuetify, {
   components: {
     VApp,
     VNavigationDrawer,
     VFooter,
+    VForm,
+    VTextField,
     VList,
     VBtn,
     VIcon,
