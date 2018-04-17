@@ -7,16 +7,29 @@ var serveStatic = require('serve-static');
 var app = express();
 app.use(serveStatic(__dirname + "/dist"));
 var port = process.env.PORT || 5000;
+var fs = require( 'fs' )
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 var models = require('./models')
 
-models.sequelize.sync( { force: false } ).then(function() {
-    console.log('sequelize done')
-});
+var passport = require("passport");
+app.use( passport.initialize() )
+var strategy = require('./config/strategy')( passport )
 
-
-
+/* Include all express controllers */
+fs.readdirSync('./controllers').forEach(function (file) {
+    if(file.substr(-3) == '.js') {
+        var route = require('./controllers/' + file);
+        route.controller( app, strategy );
+        // route.controller( app, jwt, strategy );
+    }
+})
 
 
 
