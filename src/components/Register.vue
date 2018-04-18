@@ -46,13 +46,17 @@
     	methods: {
     		submit () {
     			if (this.$refs.form.validate()) {
+                    console.log( this.$router )
     				axios.post( 'http://localhost:5000/register', {
                         email: this.email,
                         password: this.password
                     }).then( function( res ) {
                         console.log( res )
+                        console.log( this.$router )
+                        window.localStorage.setItem( 'token', res.data )
+                        this.$router.push('/')
                     }).catch( function( err ) {
-                        console.log( err )
+                        console.log( err.response )
                     })
     			} else {
     				console.log( 'nope' )
