@@ -5,6 +5,7 @@
   			v-model="email"
   			:rules="emailRules"
   			:counter="10"
+            ref="email"
   			required>
   		</v-text-field>
 
@@ -12,6 +13,7 @@
   			label="password"
   			v-model="password"
   			type="password"
+            ref="password"
   			required>
   		</v-text-field>
 
@@ -44,7 +46,14 @@
     	methods: {
     		submit () {
     			if (this.$refs.form.validate()) {
-    				console.log( 'yep' )
+    				axios.post( 'http://localhost:5000/register', {
+                        email: this.email,
+                        password: this.password
+                    }).then( function( res ) {
+                        console.log( res )
+                    }).catch( function( err ) {
+                        console.log( err )
+                    })
     			} else {
     				console.log( 'nope' )
     			}
