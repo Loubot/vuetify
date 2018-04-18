@@ -45,16 +45,18 @@
     	},
     	methods: {
     		submit () {
+                const self = this
     			if (this.$refs.form.validate()) {
-                    console.log( this.$router )
+                    // console.log( this.$router.push( '/' ) )
     				axios.post( 'http://localhost:5000/register', {
                         email: this.email,
                         password: this.password
                     }).then( function( res ) {
                         console.log( res )
-                        console.log( this.$router )
+                        console.log( self.$router )
+                        self.$router.push( '/' )
                         window.localStorage.setItem( 'token', res.data )
-                        this.$router.push('/')
+                        // self.$router.push('/')
                     }).catch( function( err ) {
                         console.log( err.response )
                     })
