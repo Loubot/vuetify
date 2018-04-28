@@ -9,11 +9,16 @@
   			required>
   		</v-text-field>
 
+        <v-text-field type="text" label="password" v-model="password"> </v-text-field>
+        <p class="error--text" v-if="!$v.password.required">The password field is required!</p>
+        <p class="error--text" v-if="!$v.password.minLength">The input must have at least 6 chars</p>
+
   		<v-text-field
   			label="password"
   			v-model="password"
   			type="password"
             ref="password"
+            minLength="6"
   			required>
   		</v-text-field>
 
@@ -30,6 +35,7 @@
 
 <script>
 	import axios from 'axios'
+    import { required, minLength, between } from 'vuelidate/lib/validators'
   	export default {
 
     	data () {
@@ -43,6 +49,12 @@
     			],
     		}
     	},
+        validations: {
+            password: {
+                required,
+                minLength: minLength( 6 )
+            }
+        },
     	methods: {
     		submit () {
                 const self = this
