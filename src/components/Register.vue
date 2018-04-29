@@ -9,9 +9,9 @@
   			required>
   		</v-text-field>
 
-        <v-text-field type="text" label="password" v-model="password"> </v-text-field>
+       <!--  <v-text-field type="text" label="password" v-model="password"> </v-text-field>
         <p class="error--text" v-if="!$v.password.required">The password field is required!</p>
-        <p class="error--text" v-if="!$v.password.minLength">The input must have at least 6 chars</p>
+        <p class="error--text" v-if="!$v.password.minLength">The input must have at least 6 chars</p> -->
 
   		<v-text-field
   			label="password"
@@ -37,6 +37,7 @@
 	import axios from 'axios'
     import { required, minLength, between } from 'vuelidate/lib/validators'
   	export default {
+
 
     	data () {
     		return {
@@ -68,9 +69,11 @@
                         console.log( self.$router )
                         self.$router.push( '/' )
                         window.localStorage.setItem( 'token', res.data )
+                        self.$alertify.success("success")
                         // self.$router.push('/')
                     }).catch( function( err ) {
                         console.log( err.response )
+                        self.$alertify.error("fail")
                     })
     			} else {
     				console.log( 'nope' )

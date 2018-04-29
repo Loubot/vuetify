@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuelidate from 'vuelidate'
+import VueAlertify from "vue-alertify"
+
+Vue.use(VueAlertify)
 Vue.use(Vuelidate)
 import {
   Vuetify,
